@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { TextDecoder } from 'undici';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCFAoS5FcqLjXT7xIXr5MB1uEEnjCiCxjs",
