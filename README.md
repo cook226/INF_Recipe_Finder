@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+Recipe Finder is a web application for finding, saving, and managing your favorite recipes. Built with React, Firebase, and the Spoonacular API, this project allows you to search for recipes, view their details, and save them to your profile.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features
+- Search recipes based on ingredients or category
+- View recipe details, including instructions and nutritional information
+- Save and manage favorite recipes
+- User authentication with login and signup
+- Rate recipes and see average ratings
 
-In the project directory, you can run:
+## Technologies Used
+- **React**: A JavaScript library for building user interfaces
+- **Firebase**: Authentication and Firestore Database
+- **Spoonacular API**: Recipe and nutrition data
+- **Tailwind CSS**: Utility-first CSS framework
+- **Jest**: Testing framework
 
-### `npm start`
+## Project Structure
+The project structure is as follows:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+recipe-finder/
+  ├── public/                     # Static files
+  │   ├── index.html              # HTML entry point
+  │   └── ...
+  ├── src/                        # Source files
+  │   ├── __tests__/              # Test files
+  │   ├── components/             # Component files
+  │   │   ├── HomePage.js
+  │   │   ├── NavBar.js
+  │   │   ├── RecipeDetailPage.js
+  │   │   ├── ProfilePage.js
+  │   │   └── ...
+  │   ├── firebaseConfig.js       # Firebase configuration
+  │   ├── App.js                  # Main application file
+  │   ├── index.js                # Entry point of the React application
+  │   └── ...
+  ├── README.md                   # Documentation
+  ├── package.json                # Project dependencies and scripts
+  └── ...
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
+Make sure you have Node.js and npm installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node.js:** `>= 14.x`
+- **npm:** `>= 6.x`
 
-### `npm run build`
+### Installation and Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the Repository:
+   git clone https://github.com/cook226/INF_Recipe_Finder.git
+   cd recipe-finder
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install Dependencies:
+   npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Firebase Configuration:
+   Create a `firebaseConfig.js` file in the `src/` directory with your Firebase credentials:
 
-### `npm run eject`
+   // src/firebaseConfig.js
+   import { initializeApp } from 'firebase/app';
+   import { getAuth } from 'firebase/auth';
+   import { getFirestore } from 'firebase/firestore';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   const firebaseConfig = {
+     apiKey: "YOUR_API_KEY",
+     authDomain: "YOUR_AUTH_DOMAIN",
+     projectId: "YOUR_PROJECT_ID",
+     storageBucket: "YOUR_STORAGE_BUCKET",
+     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+     appId: "YOUR_APP_ID"
+   };
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   const app = initializeApp(firebaseConfig);
+   const auth = getAuth(app);
+   const db = getFirestore(app);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   export { auth, db };
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Spoonacular API Configuration:
+   Update the Spoonacular API key in the `src/components/RecipeDetailPage.js` file:
 
-## Learn More
+   const SPOONACULAR_API_KEY = 'YOUR_SPOONACULAR_API_KEY';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Usage
+1. Start the Development Server:
+   npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Search Recipes:
+   Use the search bar on the home page to find recipes based on ingredients or category.
 
-### Code Splitting
+3. View Details:
+   Click on a recipe to see detailed information, including instructions and nutritional facts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Save to Favorites:
+   Add recipes to your favorites by clicking on the "Favorite" button.
 
-### Analyzing the Bundle Size
+### Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To run the tests, use the following command:
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+npm test
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To deploy the project:
 
-### `npm run build` fails to minify
+1. Build the Production Version:
+   npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. Deploy to a Web Server:
+   Upload the `build/` directory to your web server or deploy to a static site hosting service like Netlify, Vercel, or GitHub Pages.
+
+### Contributions
+
+We welcome contributions to the Recipe Finder project. Please follow these guidelines:
+
+1. Fork the repository and create your branch: `git checkout -b my-feature`
+2. Commit your changes: `git commit -am 'Add my feature'`
+3. Push to the branch: `git push origin my-feature`
+4. Create a pull request
+
+
+
+### Contact
+
+For any questions or suggestions, please reach out:
+
+- Email: cook226@gmail.com
+- GitHub Issues: [Recipe Finder Issues](https://github.com/cook226/INF_Recipe_Finder/issues)
